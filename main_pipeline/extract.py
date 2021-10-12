@@ -47,11 +47,5 @@ def save_to_csv_temp(df, path):
 
 
 if __name__ == "__main__":
-    # df = get_csv_from_requests("https://coronavirus.data.gov.uk/api/v1/data?\
-    #     filters=areaType=overview&structure=%7B%22areaType%22:%22areaType%22,\
-    #         %22areaName%22:%22areaName%22,%22areaCode%22:%22areaCode%22,\
-    #             %22date%22:%22date%22,%22newCasesBySpecimenDate%22:%22newCasesBySpecimenDate%22,\
-    #                 %22cumCasesBySpecimenDate%22:%22cumCasesBySpecimenDate%22%7D&format=csv")
-    df2 = get_csv_from_requests("https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&metric=newCasesBySpecimenDate&format=csv")
-    
-    save_to_csv_temp(df2, "dev.csv")
+    df = get_csv_from_requests("https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&metric=newPeopleVaccinatedCompleteByVaccinationDate&format=csv")
+    print(df.head())

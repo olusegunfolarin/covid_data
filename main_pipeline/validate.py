@@ -10,7 +10,7 @@ def unique_records(df):
     """
     Checks that data contains unique records
     """
-    return df[['areaCode', 'date']].duplicated().sum() == 0
+    return df[[df.columns[0], 'date']].duplicated().sum() == 0
 
 def valid_date(df):
     """
@@ -19,9 +19,10 @@ def valid_date(df):
     today = date.strftime(date.today(), format="%Y-%m-%d")
     return (df['date'] <= today).sum() == len(df)
 
-def cases_range(df, col='newCasesBySpecimenDate', min=0, max=1e7):
+def cases_range(df, col=4, min=0, max=1e7):
     """Validates cases are not negative or more than the population of UK
     """
+    col = df.columns[4]
     return (df[col] >= min).all() & (df[col] <=max).all()
 
 def no_nulls(df):
@@ -30,7 +31,7 @@ def no_nulls(df):
     return df.isnull().values.sum() == 0
 
 # validation for cases data
-cases_data_validation = [
+data_validation_tests = [
     (unique_records, "Only one record per local authority per date allowed"),
     (valid_date, "Date cannot be in the future"),
     (cases_range, "Cases can only be between 0 and 66 million"),
