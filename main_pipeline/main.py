@@ -37,6 +37,7 @@ def main(src, dest, options):
 
         df = transform.parse_dates(df, ['date'])
         df = transform.create_country_col(df)
+        df = transform.create_unique_from_columns(df)
         if options[options.index('-name') + 1].lower() == "cases":
             df.columns = [
                 'area_code',

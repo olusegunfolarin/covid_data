@@ -19,7 +19,7 @@ def get_csv_from_requests(url):
     -------
     Dataframe
     """
-    r = requests.get(url, timeout=10)
+    r = requests.get(url, timeout=30)
     data = r.content.decode("utf-8")
     df = pd.read_csv(io.StringIO(data), low_memory=False)
     return df
