@@ -18,3 +18,6 @@ def test_country_column(df):
     df = transform.create_country_col(df)
     assert 'nation' in df.columns
 
+def test_id_col(df):
+    df = transform.create_unique_from_columns(df)
+    assert 'id' in df.columns

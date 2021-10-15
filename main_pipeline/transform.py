@@ -77,13 +77,18 @@ def create_country_col(df, col="areaCode"):
         
     return df
     
-
+def create_unique_from_columns(df):
+    """Creates a unique ID from the columns in the table
+    """
+    df['id'] = df['areaCode'] + "-"  + df['date'].astype(str)
+    return df
 
 
 if __name__ == "__main__":
     df = load_csv("/home/olusegun/projects/covid_data/dev.csv")
     df = create_country_col(df)
     df = parse_dates(df, ['date'])
-    print(df.head(15))
+    df = create_unique_from_columns(df)
+    print(df[['date', 'id']].head(2))
     # print(df[['areaCode', 'date']].duplicated().sum() == 0)
     # print((df['date'] <= "2021-10-11").all())

@@ -37,33 +37,39 @@ def main(src, dest, options):
 
         df = transform.parse_dates(df, ['date'])
         df = transform.create_country_col(df)
-        if {options[options.index('-name') + 1].lower()} == "cases":
+        if options[options.index('-name') + 1].lower() == "cases":
             df.columns = [
                 'area_code',
                 'area_name',
                 'area_type',
                 'date',
                 'new_cases',
-                'nation'
+                'nation',
+                'id'
                 ]
             logger.info(f"{df.columns}")
-        elif {options[options.index('-name') + 1].lower()} == "deaths":
+        elif options[options.index('-name') + 1].lower() == "deaths":
              df.columns = [
+                 
                 'area_code',
                 'area_name',
                 'area_type',
                 'date',
                 'new_death',
-                'nation'
+                'nation',
+                'id'
+
                 ]
-        elif  {options[options.index('-name') + 1].lower()} == "vaccinations":
+        elif  options[options.index('-name') + 1].lower() == "vaccinations":
              df.columns = [
+                 
                 'area_code',
                 'area_name',
                 'area_type',
                 'date',
                 'vaccinations',
-                'nation'
+                'nation',
+                'id'
                 ]
     else:
         logger.info("No transformation specified")          
@@ -99,3 +105,4 @@ if __name__ == "__main__":
 
     logger.info("Starting ETL...")
     main(src, dest, opt_args)
+    logger.info("ETL Complete......")

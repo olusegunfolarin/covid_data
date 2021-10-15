@@ -10,7 +10,7 @@ def unique_records(df):
     """
     Checks that data contains unique records
     """
-    return df[[df.columns[0], 'date']].duplicated().sum() == 0
+    return df['id'].duplicated().sum() == 0
 
 def valid_date(df):
     """
