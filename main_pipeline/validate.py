@@ -67,4 +67,6 @@ def validate_data(df, tests):
 
 if __name__ == "__main__":
     df = pd.read_csv("/home/olusegun/projects/covid_data/dev.csv")
-    print(cases_range(df))
+    print(valid_date(df))
+    today = date.strftime(date.today(), format="%Y-%m-%d")
+    print(date.today())

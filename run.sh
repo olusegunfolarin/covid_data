@@ -1,4 +1,6 @@
 #!/bin/bash
+cd /home/olusegun/projects/covid_data
+# change the path above
 source covid-env/bin/activate
 cd main_pipeline
 python main.py -name cases -transform -validate  'https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&metric=newCasesBySpecimenDate&format=csv' olvsegun/covid-data-uk-dev.cases

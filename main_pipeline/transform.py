@@ -1,6 +1,8 @@
 import logging
 import pandas as pd
 import os
+import validate
+import extract
 
 
 logger = logging.getLogger(__name__)
@@ -85,10 +87,12 @@ def create_unique_from_columns(df):
 
 
 if __name__ == "__main__":
-    df = load_csv("/home/olusegun/projects/covid_data/dev.csv")
-    df = create_country_col(df)
+    df = extract.get_csv_from_requests("https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&metric=newDeaths28DaysByDeathDate&format=csv")
     df = parse_dates(df, ['date'])
     df = create_unique_from_columns(df)
-    print(df[['date', 'id']].head(2))
+    # print(validate.validate_data(df, validate.data_validation_tests))
+    print(validate.valid_date(df))
+    print(df.date.astype('str').apply(len).unique())
+    # print(df.head())
     # print(df[['areaCode', 'date']].duplicated().sum() == 0)
     # print((df['date'] <= "2021-10-11").all())
