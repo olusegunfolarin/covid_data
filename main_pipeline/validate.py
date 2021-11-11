@@ -60,7 +60,7 @@ def validate_data(df, tests):
             logger.info(f"Data validation {test.__name__} passed.")
         else:
             logger.error(f"Data validation {test.__name__} failed. {message}")
-    logger.info(f"{sum(results)/len(results)} passed.")
+    logger.info(f"{sum(results)*100/len(results)}% passed.")
     return sum(results) == len(results)
 
 
